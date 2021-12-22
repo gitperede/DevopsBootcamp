@@ -3,18 +3,16 @@
   connection: local
   hosts: localhost
   tasks:
-    - action: uri url=http://ec2-18-184-249-8.eu-central-1.compute.amazonaws.com/ return_content=yes
-      register: webpage
+    - block:
+      - name: Connect with the webpage and save results
+        action: uri url=http://ec2-18-184-249-8.eu-central-1.compute.amazonaws.com/ return_content=yes
+        register: webpage
 
     - block:
         - name: Create log with the issue
-          copy:
-            dest: "/home/jenkins/errorlog__{{ lookup('pipe','date +%y_%m_%d') }}.txt"
-            content: |
-               {{ lookup('pipe','date') }} A file has been uploaded an webpage is not working properly
-          become: yes
+          lineinfile:
+            create: yes
+            line: "{{ lookup('pipe','date') }} A file has been uploaded an webpage is not working properly"
+            insertafter: EOF
+            dest: "/home/errorlog__{{ lookup('pipe','date +%y_%m_%d') }}.txt"
       when: "'Welcome to NASA Astronomy Picture of the Day' not in webpage.content"
-
-    - fail:
-        msg: 'service is not happy'
-      when: "'Welcomex to NASA Astronomy Picture of the Day' not in webpage.content"
