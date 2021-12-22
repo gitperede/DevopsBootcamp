@@ -14,5 +14,5 @@
             create: yes
             line: "{{ lookup('pipe','date') }} Web contents have been changed an webpage is not working as expected"
             insertafter: EOF
-            dest: "/home/errorlog__{{ lookup('pipe','date +%y_%m_%d') }}.txt"
+            dest: "/home/errorlog.txt"
       when: "'Welcome to NASA Astronomy Picture of the Day' not in webpage.content"
