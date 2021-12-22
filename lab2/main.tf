@@ -90,7 +90,7 @@ resource "aws_instance" "webserver" {
   instance_type          = "t2.micro"
   key_name               = "aws_key"
   vpc_security_group_ids = [aws_security_group.allow_jenkins.id, aws_security_group.allow_ssh.id, aws_security_group.allow_http.id]
-  user_data              = "${file("start_webserver.sh")}"
+  user_data              = "${file("start_server.sh")}"
 
   tags = {
     Name = "webserver"
