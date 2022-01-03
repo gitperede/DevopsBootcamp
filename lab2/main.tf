@@ -85,7 +85,6 @@ resource "aws_security_group" "allow_jenkins" {
 
 
 resource "aws_instance" "webserver" {
-#  ami                    = "ami-047e03b8591f2d48a"
   ami                    = "ami-05d34d340fb1d89e5"
   instance_type          = "t2.micro"
   key_name               = "aws_key"
