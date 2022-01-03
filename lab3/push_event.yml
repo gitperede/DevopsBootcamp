@@ -9,8 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cp index.html index.php
-      #- run: tar -czvf nasapicoftheday.build.tar.gz -C .. .
-      #- run: tar -czvf nasapicoftheday.build.tar.gz .
       - run: tar -czvf nasapicoftheday.build.tar.gz *
       - uses: docker://antonyurchenko/git-release:latest
         env:
