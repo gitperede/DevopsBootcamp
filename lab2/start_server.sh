@@ -15,7 +15,7 @@ sudo mv /var/www/html/index.php /var/www/html/index.html
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
 sudo amazon-linux-extras install epel -y
-sudo yum install java-1.8.0-openjdk -y
+sudo yum install java-11-amazon-corretto.x86_64 -y
 sudo yum install jenkins -y
 sudo service jenkins start
 sudo echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
